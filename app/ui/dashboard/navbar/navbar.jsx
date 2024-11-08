@@ -28,7 +28,7 @@ function NavBar() {
                <MdSearch size={20} />
                <input type="text" className='bg-transparent pl-2' />
             </div>
-            <div className='flex items-center gap-3'>
+            <div className='flex items-center gap-3 cursor-pointer'>
                <MdOutlineChat size={20} />
                <MdNotifications size={20} />
                <MdPublic size={20} />

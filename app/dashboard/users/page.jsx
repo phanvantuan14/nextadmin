@@ -1,3 +1,4 @@
+import Pagination from '@/app/ui/dashboard/pagination/pagination'
 import Search from '@/app/ui/dashboard/search/search'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -25,7 +26,7 @@ function UsersPage() {
             </thead>
             <tbody>
                <tr >
-                  <td className='pt-3'>
+                  <td className='pt-4'>
                      <div className='flex items-center gap-2'>
                         <Image
                            src="/noavatar.png"
@@ -37,13 +38,13 @@ function UsersPage() {
                         P-Tuan
                      </div>
                   </td>
-                  <td className='pt-3'>pvtuan05@gmail.com</td>
-                  <td className='pt-3'>14/05/2002</td>
-                  <td className='pt-3'>Admin</td>
-                  <td className='pt-3'>Active</td>
-                  <td className='pt-3'>
+                  <td className='pt-4'>pvtuan05@gmail.com</td>
+                  <td className='pt-4'>14/05/2002</td>
+                  <td className='pt-4'>Admin</td>
+                  <td className='pt-4'>Active</td>
+                  <td className='pt-4'>
                      <div className='flex items-center gap-2'>
-                        <Link href={`/dashboard/users/userId`}>
+                        <Link href={`/dashboard/users/id`}>
                            <button className='py-1 px-2 bg-teal-500 rounded-md'>
                               View
                            </button>
@@ -59,7 +60,7 @@ function UsersPage() {
                </tr>
                {/* 2 */}
                <tr >
-                  <td className='pt-3'>
+                  <td className='pt-4'>
                      <div className='flex items-center gap-2'>
                         <Image
                            src="/noavatar.png"
@@ -71,13 +72,13 @@ function UsersPage() {
                         P-Tuan
                      </div>
                   </td>
-                  <td className='pt-3'>pvtuan05@gmail.com</td>
-                  <td className='pt-3'>14/05/2002</td>
-                  <td className='pt-3'>Admin</td>
-                  <td className='pt-3'>Active</td>
-                  <td className='pt-3'>
+                  <td className='pt-4'>pvtuan05@gmail.com</td>
+                  <td className='pt-4'>14/05/2002</td>
+                  <td className='pt-4'>Admin</td>
+                  <td className='pt-4'>Active</td>
+                  <td className='pt-4'>
                      <div className='flex items-center gap-2'>
-                        <Link href={`/dashboard/users/userId`}>
+                        <Link href={`/dashboard/users/id`}>
                            <button className='py-1 px-2 bg-teal-500 rounded-md'>
                               View
                            </button>
@@ -93,6 +94,7 @@ function UsersPage() {
                </tr>
             </tbody>
          </table>
+         <Pagination />
       </div>
    )
 }
