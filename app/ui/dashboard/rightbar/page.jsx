@@ -17,7 +17,8 @@ function RightBar() {
                <p className="text-[14px] text-[var(--textSoft)]">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit eius libero perspiciatis recusandae possimus.
                </p>
-               <button className="px-3 py-2 flex items-center gap-2 bg-[#5d57c9] rounded-md font-bold text-white">
+               <button
+                  className="px-3 py-2 flex items-center gap-2 bg-[#5d57c9] rounded-md font-bold text-white cursor-pointer">
                   <MdPlayCircleFilled size={18} />
                   Watch
                </button>

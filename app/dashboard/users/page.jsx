@@ -1,3 +1,4 @@
+import { deleteUser } from '@/app/lib/actions'
 import { fetchUsers } from '@/app/lib/data'
 import Pagination from '@/app/ui/dashboard/pagination/pagination'
 import Search from '@/app/ui/dashboard/search/search'
@@ -7,7 +8,6 @@ import React from 'react'
 
 async function UsersPage({ searchParams }) {
 
-   console.log(searchParams)
    const q = searchParams?.q || ""
    const page = searchParams?.page || 1
    const { count, users } = await fetchUsers(q, page);
@@ -38,10 +38,10 @@ async function UsersPage({ searchParams }) {
                         <div className='flex items-center gap-2'>
                            <Image
                               src={user.img || "/noavatar.png"}
-                              alt=""
+                              alt="User"
                               width={40}
                               height={40}
-                              className='object-cover'
+                              className='object-cover rounded-sm'
                            />
                            {user.username}
                         </div>
@@ -57,8 +57,8 @@ async function UsersPage({ searchParams }) {
                                  View
                               </button>
                            </Link>
-                           <form>
-                              <input type="hidden" name="id" />
+                           <form action={deleteUser}>
+                              <input type="hidden" name="id" value={user.id} />
                               <button className='py-1 px-2 bg-red-500 rounded-md'>
                                  Delete
                               </button>
