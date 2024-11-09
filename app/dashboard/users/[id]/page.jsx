@@ -5,7 +5,7 @@ function SingleUserPage() {
    return (
       <div className='m-4 flex gap-4 rounded-md '>
          <div className='bg-[--bgSoft] flex-1 p-4 h-max'>
-            <div className='w-full h-[250px] relative overflow-hidden mb-3'>
+            <div className='w-full h-[280px] relative overflow-hidden mb-3'>
                <Image src='/noavatar.png' fill className='rounded-md object-cover' />
             </div>
             <span className='font-bold'>P-Tuan</span>

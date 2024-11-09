@@ -29,7 +29,7 @@ function AddUserPage() {
                name="address"
                id="address"
                rows="10"
-               placeholder="Address"
+               placeholder="Address..."
                className='input-custom w-full'
             ></textarea>
             <button className='bg-teal-500 p-5 w-full rounded-md font-bold'>Submit</button>
