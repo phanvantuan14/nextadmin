@@ -3,8 +3,9 @@ import Card from '../ui/dashboard/card/page'
 import Transactions from '../ui/dashboard/transactions/page'
 import Chart from '../ui/dashboard/chart/page'
 import RightBar from '../ui/dashboard/rightbar/page'
+import { getSession } from '../lib/session'
 
-function DashboardPage() {
+async function DashboardPage() {
    return (
       <div className='m-4 flex gap-4'>
          <div className='content-wapper'>

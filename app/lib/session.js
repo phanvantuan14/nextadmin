@@ -63,3 +63,18 @@ export function deleteSession() {
   const cookieStore = cookies();
   cookieStore.delete("session");
 }
+
+export async function getSession() {
+  const session = cookies().get("session")?.value;
+
+  if (!session) return null;
+
+  try {
+    const { payload } = await jwtVerify(session, encodedKey, {
+      algorithms: ["HS256"],
+    });
+    return payload;
+  } catch (error) {
+    return null;
+  }
+}

@@ -178,6 +178,27 @@ export const signUp = async (formData) => {
   redirect("/dashboard");
 };
 
+export const signIn = async (username, password) => {
+  try {
+    connectToDB();
+    const user = await User.findOne({ username });
+    if (!user) throw new Error("Invalid username!");
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) throw new Error("Invalid password!");
+
+    const payload = {
+      userId: user._id,
+      username: user.username,
+      email: user.email,
+    };
+
+    await createSession(payload);
+    return user;
+  } catch (err) {
+    throw new Error("Failed to login!");
+  }
+};
+
 export const logOut = () => {
   deleteSession();
   redirect("/login");
