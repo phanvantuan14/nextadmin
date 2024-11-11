@@ -10,10 +10,13 @@ import {
    MdOutlineSettings,
    MdHelpCenter,
    MdLogout,
+   MdLogin,
+   MdSignLanguage,
 } from "react-icons/md";
 import MenuLink from './menuLink/menuLink';
 import Image from 'next/image';
 import { logOut } from '@/app/lib/actions';
+import { getSession } from '@/app/lib/session';
 
 const menuItems = [
    {
@@ -79,8 +82,7 @@ const menuItems = [
 ];
 
 async function SideBar() {
-
-
+   const session = await getSession()
    return (
       <div className='p-5 bg-[--bgSoft] sticky'>
          <div className='pb-5 flex items-center gap-5'>
@@ -90,7 +92,7 @@ async function SideBar() {
                className='rounded-full'
             />
             <div>
-               <h4 className='text-[16px] font-bold'>P-Tuan</h4>
+               <h4 className='text-[16px] font-bold'>{session?.username || 'user'}</h4>
                <span className='text-[14px] text-gray-400'>Administrator</span>
             </div>
          </div>
@@ -104,10 +106,26 @@ async function SideBar() {
                </li>
             ))}
          </ul>
+
          <form action={logOut}>
             <button
-               className='flex w-full items-center gap-4 text-[16px] p-3 hover:bg-[#2e374a] rounded-lg my-3'><MdLogout />Logout</button>
+               className='flex w-full items-center gap-4 text-[16px] p-3 hover:bg-[#2e374a] rounded-lg my-3'>
+               {session ? (
+                  <>
+                     <MdLogout /> Logout
+                  </>
+               ) : (
+                  <>
+                     <MdLogin /> Login
+                  </>
+               )}
+            </button>
          </form>
+
+         <button
+            className='flex w-full items-center gap-4 text-[16px] p-3 hover:bg-[#2e374a] rounded-lg my-3'>
+            {!session && (<><MdSignLanguage /> Register</>)}
+         </button>
       </div>
    )
 }

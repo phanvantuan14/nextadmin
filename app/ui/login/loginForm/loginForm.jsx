@@ -14,8 +14,7 @@ function LoginForm() {
       event.preventDefault();
 
       try {
-         const user = await signIn(username, password);
-         console.log(user)
+         await signIn(username, password);
          router.push("/dashboard");
       } catch (error) {
          setError(error.message);
@@ -24,7 +23,7 @@ function LoginForm() {
    return (
       <form
          onSubmit={handleSubmit}
-         className='flex flex-col items-center  bg-[--bgSoft] rounded-md p-12' action="">
+         className='flex flex-col items-center'>
          <h1 className='text-[24px] font-bold pb-4'>Login</h1>
          <input
             value={username}

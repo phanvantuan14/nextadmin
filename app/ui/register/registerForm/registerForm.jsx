@@ -10,7 +10,7 @@ function RegisterForm() {
          <input name="username" className='input-custom' type="text" placeholder='Username' />
          <input name="email" className='input-custom' type="email" placeholder='Email' />
          <input name="password" className='input-custom' type="password" placeholder='Password' />
-         <button type='submit' className='p-4 w-full bg-teal-500 rounded-md mt-2'>Register</button>
+         <button className='p-4 w-full bg-teal-500 rounded-md mt-2'>Register</button>
       </form>
    )
 }

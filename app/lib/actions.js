@@ -195,7 +195,7 @@ export const signIn = async (username, password) => {
     await createSession(payload);
     return user;
   } catch (err) {
-    throw new Error("Failed to login!");
+    throw new Error("Failed to signin!");
   }
 };
 
