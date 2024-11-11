@@ -13,6 +13,7 @@ import {
 } from "react-icons/md";
 import MenuLink from './menuLink/menuLink';
 import Image from 'next/image';
+import { logOut } from '@/app/lib/actions';
 
 const menuItems = [
    {
@@ -77,20 +78,20 @@ const menuItems = [
    },
 ];
 
-function SideBar() {
+async function SideBar() {
 
 
    return (
       <div className='p-5 bg-[--bgSoft] sticky'>
          <div className='pb-5 flex items-center gap-5'>
-            <Image src='/noavatar.png' alt='avatar'
+            <Image src="/noavatar.png" alt='avatar'
                width={50}
                height={50}
                className='rounded-full'
             />
             <div>
-               <h4 className='text-[16px] font-bold'>User1</h4>
-               <span className='text-[14px] text-gray-400'>user1@gmail.com</span>
+               <h4 className='text-[16px] font-bold'>P-Tuan</h4>
+               <span className='text-[14px] text-gray-400'>Administrator</span>
             </div>
          </div>
          <ul>
@@ -103,7 +104,10 @@ function SideBar() {
                </li>
             ))}
          </ul>
-         <button className='flex w-full items-center gap-4 text-[16px] p-3 hover:bg-[#2e374a] rounded-lg my-3'><MdLogout />Logout</button>
+         <form action={logOut}>
+            <button
+               className='flex w-full items-center gap-4 text-[16px] p-3 hover:bg-[#2e374a] rounded-lg my-3'><MdLogout />Logout</button>
+         </form>
       </div>
    )
 }

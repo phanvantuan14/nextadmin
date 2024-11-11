@@ -2,7 +2,7 @@ import React from 'react'
 
 function LoginForm() {
    return (
-      <form className='flex flex-col items-center  bg-[--bgSoft] rounded-md p-9' action="">
+      <form className='flex flex-col items-center  bg-[--bgSoft] rounded-md p-12' action="">
          <h1 className='text-[24px] font-bold pb-4'>Login</h1>
          <input className='input-custom' type="text" placeholder='Username' />
          <input className='input-custom' type="password" placeholder='Password' />

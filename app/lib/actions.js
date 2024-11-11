@@ -5,8 +5,9 @@ import { Product, User } from "./models";
 import { connectToDB } from "./utils";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
+import { SignupFormSchema } from "./definitions";
+import { createSession, deleteSession } from "./session";
 
-// add user
 export const addUser = async (formData) => {
   const { username, email, password, phone, address, isAdmin, isActive } =
     Object.fromEntries(formData);
@@ -32,7 +33,6 @@ export const addUser = async (formData) => {
   redirect("/dashboard/users");
 };
 
-// update user
 export const updateUser = async (formData) => {
   const { id, username, email, password, phone, address, isAdmin, isActive } =
     Object.fromEntries(formData);
@@ -63,7 +63,6 @@ export const updateUser = async (formData) => {
   redirect("/dashboard/users");
 };
 
-// add product
 export const addProduct = async (formData) => {
   const { title, desc, price, stock, color, size } =
     Object.fromEntries(formData);
@@ -86,7 +85,6 @@ export const addProduct = async (formData) => {
   redirect("/dashboard/products");
 };
 
-// update product
 export const updateProduct = async (formData) => {
   const { id, title, desc, price, stock, color, size } =
     Object.fromEntries(formData);
@@ -114,7 +112,6 @@ export const updateProduct = async (formData) => {
   redirect("/dashboard/products");
 };
 
-// delete product
 export const deleteProduct = async (formData) => {
   const { id } = Object.fromEntries(formData);
   try {
@@ -127,7 +124,6 @@ export const deleteProduct = async (formData) => {
   revalidatePath("/dashboard/products");
 };
 
-// delete user
 export const deleteUser = async (formData) => {
   const { id } = Object.fromEntries(formData);
   try {
@@ -138,4 +134,51 @@ export const deleteUser = async (formData) => {
   }
 
   revalidatePath("/dashboard/users");
+};
+
+export const signUp = async (formData) => {
+  const { username, email, password } = Object.fromEntries(formData);
+
+  const validatedFields = SignupFormSchema.safeParse({
+    username,
+    email,
+    password,
+  });
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
+  try {
+    await connectToDB();
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+    });
+    console.log(newUser);
+    await newUser.save();
+
+    const payload = {
+      userId: newUser._id,
+      username: newUser.username,
+      email: newUser.email,
+    };
+
+    await createSession(payload);
+  } catch (error) {
+    throw new Error("Failed to signup!");
+  }
+
+  redirect("/dashboard");
+};
+
+export const logOut = () => {
+  deleteSession();
+  redirect("/login");
 };
